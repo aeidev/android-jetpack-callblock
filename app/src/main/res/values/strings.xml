@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">CallBlock</string>
+    <string name="channel_blocked_name">Blocked call</string>
+    <string name="channel_blocked_description">Channel for blocked caller notifications</string>
+    <string name="notification_blocked_title">Caller blocked</string>
+
+    <string name="channel_allowed_name">Allowed call</string>
+    <string name="channel_allowed_description">Channel for allowed caller notifications</string>
+    <string name="notification_allowed_title">Caller allowed</string>
+
+    <string name="button_allow_number">Allow caller</string>
+    <string name="button_block_number">Block caller</string>
+    <string name="button_unallow_number">Unallow caller</string>
+    <string name="button_unblock_number">Unblock  caller</string>
+
+    <string name="button_enable">ENABLE</string>
+
+    <string name="warning_banner_missing_call_screen_role">Missing call screening role required to block calls.</string>
+
+</resources>
