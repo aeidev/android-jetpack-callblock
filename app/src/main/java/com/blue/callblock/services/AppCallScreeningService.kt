@@ -43,7 +43,7 @@ class AppCallScreeningService : CallScreeningService() {
                 val callEvent = CallEvent(
                     0,
                     number,
-                    System.currentTimeMillis() - 1,
+                    System.currentTimeMillis(),
                     callType = CallType.Allowed
                 )
                 scope.launch {

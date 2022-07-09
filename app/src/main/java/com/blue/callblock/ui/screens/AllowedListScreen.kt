@@ -64,7 +64,7 @@ fun AllowedListScreen(viewModel: AllowedListViewModel, navController: NavControl
                 } else {
                     LazyColumn {
                         items(callersList.value) { caller ->
-                            ListActionCard(titleLabel = caller.phoneNumber, subTitleLabel = DateHelper.millisecondsToDate(caller.allowedTime!!), onClick = { NavHelper.navigateToNumberDetails(navController, caller.phoneNumber) })
+                            ListActionCard(titleLabel = caller.phoneNumber, subTitleLabel = DateHelper.millisecondsToDate(caller.flaggedTime!!), onClick = { NavHelper.navigateToNumberDetails(navController, caller.phoneNumber) })
                         }
                     }
                 }

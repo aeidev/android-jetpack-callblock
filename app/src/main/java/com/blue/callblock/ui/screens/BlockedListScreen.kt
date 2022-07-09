@@ -62,7 +62,7 @@ fun BlockListScreen(viewModel: BlockedListViewModel, navController: NavControlle
                 } else {
                     LazyColumn {
                         items(callersList.value) { caller ->
-                            ListActionCard(titleLabel = caller.phoneNumber, subTitleLabel = DateHelper.millisecondsToDate(caller.blockedTime!!), onClick = { NavHelper.navigateToNumberDetails(navController, caller.phoneNumber) })
+                            ListActionCard(titleLabel = caller.phoneNumber, subTitleLabel = DateHelper.millisecondsToDate(caller.flaggedTime!!), onClick = { NavHelper.navigateToNumberDetails(navController, caller.phoneNumber) })
                         }
                     }
                 }

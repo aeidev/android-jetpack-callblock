@@ -2,6 +2,7 @@ package com.blue.callblock.repository
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.blue.callblock.shared.CallerFlags
 
 @Dao
 interface CallerDao {
@@ -17,11 +18,8 @@ interface CallerDao {
     @Query("SELECT * FROM Caller WHERE phone_number IN(:phoneNumber) LIMIT 1")
     fun loadByPhoneNumber(phoneNumber: String): Caller?
 
-    @Query("SELECT * FROM Caller WHERE blocked_time > 0")
-    fun getAllBlocked(): LiveData<List<Caller>>
-
-    @Query("SELECT * FROM Caller WHERE allowed_time > 0")
-    fun getAllAllowed(): LiveData<List<Caller>>
+    @Query("SELECT * FROM Caller WHERE flag in(:flag)")
+    fun getAllByCallFlag(flag: CallerFlags): LiveData<List<Caller>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg recentCall: Caller)

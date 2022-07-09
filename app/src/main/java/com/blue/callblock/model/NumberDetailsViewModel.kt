@@ -8,6 +8,7 @@ import com.blue.callblock.Constants
 import com.blue.callblock.repository.Caller
 import com.blue.callblock.repository.CallerRepository
 import com.blue.callblock.shared.CallType
+import com.blue.callblock.shared.CallerFlags
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -27,8 +28,8 @@ class NumberDetailsViewModel @Inject constructor(
         CoroutineScope(Dispatchers.IO).launch {
             val c = Caller.createNew(
                 phoneNumber = phoneNumber!!,
-                allowedTime = null,
-                blockedTime = System.currentTimeMillis(),
+                flag = CallerFlags.BLOCK,
+                flaggedTime = System.currentTimeMillis(),
                 lastCallType = caller.value?.lastCallType ?: CallType.None
             )
             callerRepository.putCaller(c)
@@ -39,8 +40,8 @@ class NumberDetailsViewModel @Inject constructor(
         CoroutineScope(Dispatchers.IO).launch {
             val c = Caller.createNew(
                 phoneNumber = phoneNumber!!,
-                allowedTime = System.currentTimeMillis(),
-                blockedTime = null,
+                flag = CallerFlags.ALLOW,
+                flaggedTime = System.currentTimeMillis(),
                 lastCallType = caller.value?.lastCallType ?: CallType.None
             )
             callerRepository.putCaller(c)

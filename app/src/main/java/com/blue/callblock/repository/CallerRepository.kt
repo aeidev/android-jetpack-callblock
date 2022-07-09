@@ -1,6 +1,7 @@
 package com.blue.callblock.repository
 
 import androidx.lifecycle.LiveData
+import com.blue.callblock.shared.CallerFlags
 import javax.inject.Inject
 
 
@@ -22,9 +23,9 @@ class CallerRepository @Inject constructor(private val callerDao: CallerDao) {
     }
 
     fun getAllBlocked(): LiveData<List<Caller>> {
-        return callerDao.getAllBlocked()
+        return callerDao.getAllByCallFlag(flag = CallerFlags.BLOCK)
     }
     fun getAllAllowed(): LiveData<List<Caller>> {
-        return callerDao.getAllAllowed()
+        return callerDao.getAllByCallFlag(flag = CallerFlags.ALLOW)
     }
 }

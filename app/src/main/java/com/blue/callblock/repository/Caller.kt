@@ -5,6 +5,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.blue.callblock.shared.CallType
+import com.blue.callblock.shared.CallerFlags
 
 /**
  * Handles storing callers that may have flags such as blocked or allowed.
@@ -12,16 +13,16 @@ import com.blue.callblock.shared.CallType
 @Entity
 data class Caller(
     @PrimaryKey @NonNull @ColumnInfo(name = "phone_number") val phoneNumber: String,
-    @ColumnInfo(name = "blocked_time") val blockedTime: Long?,
-    @ColumnInfo(name = "allowed_time") val allowedTime: Long?,
+    @ColumnInfo(name = "flag") val flag: CallerFlags,
+    @ColumnInfo(name = "flagged_time") val flaggedTime: Long?,
     @ColumnInfo(name = "call_type") val lastCallType: CallType
 ) {
     fun isAllowed(): Boolean {
-        return this.allowedTime != null && this.allowedTime > 0L
+        return this.flag == CallerFlags.ALLOW
     }
 
     fun isBlocked(): Boolean {
-        return this.blockedTime != null && this.blockedTime > 0L
+        return this.flag == CallerFlags.BLOCK
     }
 
     companion object {
@@ -32,14 +33,14 @@ data class Caller(
          */
         fun createNew(
             phoneNumber: String,
-            allowedTime: Long?,
-            blockedTime: Long?,
+            flag: CallerFlags?,
+            flaggedTime: Long?,
             lastCallType: CallType?
         ): Caller {
             return Caller(
                 phoneNumber = phoneNumber,
-                allowedTime = allowedTime,
-                blockedTime = blockedTime,
+                flag = flag ?: CallerFlags.NONE,
+                flaggedTime = flaggedTime,
                 lastCallType = lastCallType ?: CallType.None
             )
         }
