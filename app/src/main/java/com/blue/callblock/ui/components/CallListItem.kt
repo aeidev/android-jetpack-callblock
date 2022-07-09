@@ -46,7 +46,7 @@ fun CallListItem(call: CallEvent, onClick: (phoneNumber: String) -> Unit) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(12.dp, 6.dp)
+                    .padding(12.dp, 0.dp)
             ) {
                 Text(text = call.phoneNumber, fontSize = 18.sp)
             }

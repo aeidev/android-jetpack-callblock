@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.blue.callblock.helpers.DateHelper
 import com.blue.callblock.model.BlockedListViewModel
 import com.blue.callblock.navigation.AppRoutes
 import com.blue.callblock.navigation.NavHelper
@@ -47,7 +48,7 @@ fun BlockListScreen(viewModel: BlockedListViewModel, navController: NavControlle
             Column(
                 modifier = Modifier
                     .padding(padding)
-                    .padding(12.dp, 0.dp)
+                    .padding(12.dp, 12.dp)
                     .fillMaxSize()
             ) {
                 if (callersList.value.isEmpty()) {
@@ -61,7 +62,7 @@ fun BlockListScreen(viewModel: BlockedListViewModel, navController: NavControlle
                 } else {
                     LazyColumn {
                         items(callersList.value) { caller ->
-                            ListActionCard(titleLabel = caller.phoneNumber, subTitleLabel = caller.blockedTime.toString(), onClick = { NavHelper.navigateToNumberDetails(navController, caller.phoneNumber) })
+                            ListActionCard(titleLabel = caller.phoneNumber, subTitleLabel = DateHelper.millisecondsToDate(caller.blockedTime!!), onClick = { NavHelper.navigateToNumberDetails(navController, caller.phoneNumber) })
                         }
                     }
                 }

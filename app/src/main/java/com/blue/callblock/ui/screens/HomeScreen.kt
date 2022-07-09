@@ -41,7 +41,7 @@ fun HomeScreen(viewModel: HomeViewModel, navController: NavController) {
                 RecentCallList(
                     recentCalls.value,
                     onItemClick = { mdn -> NavHelper.navigateToNumberDetails(navController, mdn) })
-                Spacer(modifier = Modifier.padding(0.dp, 12.dp))
+                Spacer(modifier = Modifier.padding(0.dp, 2.dp))
                 Button(
                     modifier = Modifier.fillMaxWidth(),
                     onClick = {
