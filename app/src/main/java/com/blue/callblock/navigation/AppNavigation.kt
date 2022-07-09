@@ -30,7 +30,12 @@ fun AppNavigation(
     Scaffold(
         modifier = Modifier.displayCutoutPadding(),
         bottomBar = {
-            if (navBackStackEntry?.destination?.route?.startsWith(AppRoutes.NumberDetails.name) != true) {
+            val currentRoute = navBackStackEntry?.destination?.route
+            //@todo improve this
+            if (currentRoute != AppRoutes.AllowList.name && currentRoute != AppRoutes.BlockList.name && currentRoute?.startsWith(
+                    AppRoutes.NumberDetails.name
+                ) != true
+            ) {
                 BottomNavBar(
                     routes = routes,
                     navController = navController
