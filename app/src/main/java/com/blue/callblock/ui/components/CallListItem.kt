@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.blue.callblock.helpers.DateHelper
 import com.blue.callblock.repository.CallEvent
 import com.blue.callblock.ui.theme.cardBackground
 
@@ -35,7 +36,7 @@ fun CallListItem(call: CallEvent, onClick: (phoneNumber: String) -> Unit) {
                         .align(Alignment.CenterVertically)
                         .padding(start = 0.dp, top = 0.dp, end = 6.dp, bottom = 0.dp)
                 )
-                Text(text = "5 minutes ago", modifier = Modifier.align(Alignment.CenterVertically))
+                Text(text = DateHelper.millisecondsToTime(call.timeStamp), modifier = Modifier.align(Alignment.CenterVertically))
             }
             Row(
                 modifier = Modifier
