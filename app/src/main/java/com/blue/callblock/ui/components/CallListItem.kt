@@ -19,7 +19,12 @@ import com.blue.callblock.ui.theme.cardBackground
 
 @Composable
 fun CallListItem(call: CallEvent, onClick: (phoneNumber: String) -> Unit) {
-        ClickableCardBase(onClick = { onClick(call.phoneNumber)}, content = {
+    val timeDisplay = if (DateHelper.isTimeInMilliToday(call.timeStamp)) {
+        DateHelper.millisecondsToTime(call.timeStamp)
+    } else {
+        DateHelper.millisecondsToDate(call.timeStamp)
+    }
+    ClickableCardBase(onClick = { onClick(call.phoneNumber)}, content = {
             Row(modifier = Modifier.fillMaxWidth()) {
                 Icon(
                     imageVector = Icons.Filled.AccountCircle,
@@ -36,7 +41,7 @@ fun CallListItem(call: CallEvent, onClick: (phoneNumber: String) -> Unit) {
                         .align(Alignment.CenterVertically)
                         .padding(start = 0.dp, top = 0.dp, end = 6.dp, bottom = 0.dp)
                 )
-                Text(text = DateHelper.millisecondsToTime(call.timeStamp), modifier = Modifier.align(Alignment.CenterVertically))
+                Text(text = timeDisplay, modifier = Modifier.align(Alignment.CenterVertically))
             }
             Row(
                 modifier = Modifier
